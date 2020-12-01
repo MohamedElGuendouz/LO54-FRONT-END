@@ -39,7 +39,7 @@ public class CourseSession implements Serializable {
     @Column(name = "END_DATE")
     private Date endDate;
 
-    @Column(name = "MAX")
+    @Column(name = "NOMBRE_MAX")
     private int maxParticipant;
     
     @JoinColumn(name = "COURSE_CODE")

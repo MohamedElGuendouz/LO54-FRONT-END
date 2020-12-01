@@ -6,7 +6,8 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/lo54Project"/>
       <property name="javax.persistence.jdbc.user" value="lo54"/>
       <property name="javax.persistence.jdbc.password" value="jlW9Tzm9OW"/>
-      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
     </properties>
