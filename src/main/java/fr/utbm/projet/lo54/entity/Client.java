@@ -50,9 +50,21 @@ public class Client implements Serializable {
     @Column(name = "EMAIL")
     private String email;  
     
-    @JoinColumn(name = "MAIN_ACTOR_ID")
+    @JoinColumn(name = "COURSE_SESSION_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private CourseSession session;
+
+    public Client() {
+    }
+
+    public Client(String lastname, String firstname, String address, String phone, String email, CourseSession session) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.session = session;
+    }
 
     public Long getId() {
         return id;
@@ -60,6 +72,54 @@ public class Client implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public CourseSession getSession() {
+        return session;
+    }
+
+    public void setSession(CourseSession session) {
+        this.session = session;
     }
 
     @Override
@@ -84,7 +144,8 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "fr.utbm.projet.lo54.entity.Client[ id=" + id + " ]";
+        return "Client{" + "id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", address=" + address + ", phone=" + phone + ", email=" + email + ", session=" + session + '}';
     }
+
     
 }

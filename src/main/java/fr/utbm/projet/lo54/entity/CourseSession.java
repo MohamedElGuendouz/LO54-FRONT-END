@@ -117,5 +117,10 @@ public class CourseSession implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "CourseSession{" + "id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", maxParticipant=" + maxParticipant + ", course=" + course + ", location=" + location + '}';
+    }
     
 }

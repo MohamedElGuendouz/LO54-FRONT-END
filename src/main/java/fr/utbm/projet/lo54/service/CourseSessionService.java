@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author loann
  */
 public class CourseSessionService {
-    @Autowired
-    private CourseSessionRep csp;
+    /*@Autowired
+    private CourseSessionRep csp;*/
     
     public ArrayList<CourseSession> listAllCourseSession(){
         CourseSessionDao csd = new CourseSessionDao();
@@ -30,7 +30,11 @@ public class CourseSessionService {
             acs.add(cs);
         }*/
         
-        return acs;
-        
+        return acs;   
+    }
+    
+    public CourseSession findById(long id) {
+        CourseSessionDao csd = new CourseSessionDao();
+        return csd.getCourseSessionById(id);
     }
 }

@@ -5,6 +5,11 @@
  */
 package fr.utbm.projet.lo54.servlet;
 
+import fr.utbm.projet.lo54.entity.Client;
+import fr.utbm.projet.lo54.entity.CourseSession;
+import fr.utbm.projet.lo54.service.ClientService;
+import fr.utbm.projet.lo54.service.CourseSessionService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,16 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.utbm.projet.lo54.service.CourseSessionService;
-import fr.utbm.projet.lo54.entity.CourseSession;
-import java.util.ArrayList;
 
 /**
  *
  * @author cleme
  */
-@WebServlet(name="ListCourseSessionServlet", urlPatterns={"/data/listCourseSession"})
-public class ListCourseSessionServlet extends HttpServlet {
+@WebServlet(name = "InsciptionClientServlet", urlPatterns = {"/registerClient"})
+public class InscriptionClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,25 +38,25 @@ public class ListCourseSessionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        long valueCs = Long.parseLong(request.getParameter("courseSession"));
         CourseSessionService css = new CourseSessionService();
-        ArrayList<CourseSession> lcs = css.listAllCourseSession();
+        CourseSession cs = css.findById(valueCs);
         
-        request.setAttribute("listLocations", lcs);
-        
+        ClientService cd = new ClientService();
+        Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), cs);
+        cd.registerClient(ct);
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Sessions</title>");            
+            out.println("<title>inscription terminee</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Liste des sessions</h1>");
-            out.println("<ul>");
-            for(CourseSession f : lcs){
-                out.println("<li>" + f.toString()+"</li>");
-            }
-            out.println("</ul>");
+            out.println("<h1>Inscription</h1>");
+            out.println("<p>Cours : " + cs.toString() + "</p>");
+            out.println("<p>participant : " + ct.toString() + "</p>");
+            out.println("<p>"+request.getParameter("courseSession")+"</p>");
             out.println("</body>");
             out.println("</html>");
         }
