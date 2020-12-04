@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.utbm.projet.lo54.service.LocationService;
-import fr.utbm.projet.lo54.entity.Location;
+import fr.utbm.projet.lo54.service.CourseSessionService;
+import fr.utbm.projet.lo54.entity.CourseSession;
 import java.util.ArrayList;
 
 /**
  *
  * @author cleme
  */
-@WebServlet(name="ListLocationServlet", urlPatterns={"/data/listLocations"})
-public class ListLocationServlet extends HttpServlet {
+@WebServlet(name="ListCourseSessionServlet", urlPatterns={"/data/listCourseSession"})
+public class ListCourseSessionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,28 @@ public class ListLocationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        LocationService ls = new LocationService();
-        ArrayList<Location> listLocation = ls.listAllLocations();
+        CourseSessionService css = new CourseSessionService();
+        ArrayList<CourseSession> lcs = css.listAllCourseSession();
         
-        request.setAttribute("listLocations", listLocation);     
+        request.setAttribute("listLocations", lcs);
+        
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Dvd Store</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Liste des films</h1>");
+            out.println("<ul>");
+            for(CourseSession f : lcs){
+                out.println("<li>" + f.getCourse().getCode() + " : "+ f.getId()+"</li>");
+            }
+            out.println("</ul>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

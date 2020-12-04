@@ -7,13 +7,13 @@ package fr.utbm.projet.lo54.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.utbm.projet.lo54.service.LocationService;
 import fr.utbm.projet.lo54.entity.Location;
 import java.util.ArrayList;
 
@@ -21,8 +21,8 @@ import java.util.ArrayList;
  *
  * @author cleme
  */
-@WebServlet(name="ListLocationServlet", urlPatterns={"/data/listLocations"})
-public class ListLocationServlet extends HttpServlet {
+@WebServlet(name="displayLocationsServlet", urlPatterns={"/listLocations"})
+public class DisplayLocationsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,27 @@ public class ListLocationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        LocationService ls = new LocationService();
-        ArrayList<Location> listLocation = ls.listAllLocations();
-        
-        request.setAttribute("listLocations", listLocation);     
+        RequestDispatcher rd = request.getRequestDispatcher("/data/listLocations");
+        rd.include(request,response);
+               
+        ArrayList<Location> listLocation = (ArrayList) request.getAttribute("listLocations");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Ecole privée</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Locations List</h1>");
+            out.println("<ul>");
+            for(Location f : listLocation){
+                out.println("<li>" + f.getCity() + "</li>");
+            }
+            out.println("</ul>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

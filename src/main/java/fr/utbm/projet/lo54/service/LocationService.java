@@ -5,10 +5,11 @@
  */
 package fr.utbm.projet.lo54.service;
 
-import fr.utbm.projet.lo54.repository.LocationRep;
+//import fr.utbm.projet.lo54.repository.LocationRep;
 import fr.utbm.projet.lo54.repository.LocationDao;
 import fr.utbm.projet.lo54.entity.Location;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+//import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author loann
@@ -23,9 +24,9 @@ public class LocationService {
         ld.save(loc);
     }
     
-    public void testFind(){
+    public ArrayList<Location> listAllLocations(){
         LocationDao ld = new LocationDao();
         
-        Location l = ld.getLocationById(2);
+        return ld.listAll();
     }
 }

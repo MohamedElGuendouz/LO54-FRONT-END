@@ -58,6 +58,46 @@ public class CourseSession implements Serializable {
         this.id = id;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getMaxParticipant() {
+        return maxParticipant;
+    }
+
+    public void setMaxParticipant(int maxParticipant) {
+        this.maxParticipant = maxParticipant;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
