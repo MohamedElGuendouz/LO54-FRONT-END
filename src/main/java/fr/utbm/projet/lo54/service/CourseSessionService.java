@@ -8,33 +8,27 @@ package fr.utbm.projet.lo54.service;
 import java.util.ArrayList;
 
 import fr.utbm.projet.lo54.repository.CourseSessionRep;
-import fr.utbm.projet.lo54.repository.CourseSessionDao;
 import fr.utbm.projet.lo54.entity.CourseSession;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 /**
  *
  * @author loann
  */
+@Service
 public class CourseSessionService {
-    /*@Autowired
-    private CourseSessionRep csp;*/
+    @Autowired
+    private CourseSessionRep csp;
     
     public ArrayList<CourseSession> listAllCourseSession(){
-        CourseSessionDao csd = new CourseSessionDao();
-        ArrayList<CourseSession> acs = csd.listAll();
-        
-        /*ArrayList<CourseSession> acs = new ArrayList<>();
-        Iterable<CourseSession> ics = csp.findAll();
-        for (CourseSession cs : ics){
-            acs.add(cs);
-        }*/
-        
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAll();
+                
         return acs;   
     }
     
-    public CourseSession findById(long id) {
-        CourseSessionDao csd = new CourseSessionDao();
-        return csd.getCourseSessionById(id);
+    public Optional<CourseSession> findById(long id) {
+        return csp.findById(id);
     }
 }
