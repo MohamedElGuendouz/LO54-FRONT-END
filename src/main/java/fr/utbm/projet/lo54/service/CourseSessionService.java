@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import fr.utbm.projet.lo54.repository.CourseSessionRep;
 import fr.utbm.projet.lo54.entity.CourseSession;
-import java.util.Optional;
+import fr.utbm.projet.lo54.entity.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,19 @@ public class CourseSessionService {
         return acs;   
     }
     
-    public Optional<CourseSession> findById(long id) {
-        return csp.findById(id);
+    public ArrayList<CourseSession> listMotCourseSession(){
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAll();
+                
+        return acs;   
+    }
+    
+    public ArrayList<CourseSession> listLocationCourseSession(Location l){
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findByLocation(l);
+                
+        return acs;   
+    }
+    
+    public CourseSession findById(long id) {
+        return csp.findById(id).orElse(null);
     }
 }

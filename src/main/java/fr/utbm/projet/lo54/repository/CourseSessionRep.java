@@ -6,6 +6,8 @@
 package fr.utbm.projet.lo54.repository;
 
 import fr.utbm.projet.lo54.entity.CourseSession;
+import fr.utbm.projet.lo54.entity.Location;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,4 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseSessionRep extends CrudRepository<CourseSession, Long> {
     Optional<CourseSession> findById(long id);
+    
+    List<CourseSession> findByLocation(Location l);
 }

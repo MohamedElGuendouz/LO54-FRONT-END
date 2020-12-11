@@ -5,12 +5,11 @@
  */
 package fr.utbm.projet.lo54.servlet;
 
+import fr.utbm.projet.lo54.entity.Client;
 import fr.utbm.projet.lo54.entity.CourseSession;
-import fr.utbm.projet.lo54.entity.Location;
+import fr.utbm.projet.lo54.service.ClientService;
 import fr.utbm.projet.lo54.service.CourseSessionService;
-import fr.utbm.projet.lo54.service.LocationService;
 
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +23,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author loann
  */
 @Controller
-public class ListCourseSessionsController {
+public class InscriptionClientController {
     @Autowired
-    private LocationService ls;
+    private ClientService cs;
     
     @Autowired
     private CourseSessionService css;
     
-    @RequestMapping(value = { "/courseSessions" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/inscriptionClient" }, method = RequestMethod.POST)
     public String viewPersonList(HttpServletRequest request, Model model) {
- 
-        ArrayList<Location> listLocation = ls.listAllLocations();
-        model.addAttribute("locations", listLocation);
+        long valueCs = Long.parseLong(request.getParameter("courseSession"));
+        CourseSession courseS = css.findById(valueCs);
         
-        //long locationID = Long.parseLong(request.getParameter("locationID"));
-        //Location loc = ls.findById(locationID);
-        ArrayList<CourseSession> listCourseSession = css.listAllCourseSession();
-        //ArrayList<CourseSession> listCourseSession = css.listLocationCourseSession(loc);
-        model.addAttribute("courseSessions", listCourseSession);
+        Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), courseS);
+        cs.registerClient(ct);
  
-        return "search-result";
+        return "successfulRegis";
     }
 }

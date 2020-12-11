@@ -8,6 +8,7 @@ package fr.utbm.projet.lo54.service;
 import fr.utbm.projet.lo54.repository.LocationRep;
 import fr.utbm.projet.lo54.entity.Location;
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -18,6 +19,10 @@ import org.springframework.stereotype.Service;
 public class LocationService {
     @Autowired
     LocationRep locRep;
+    
+    public Location findById(long id){
+        return locRep.findById(id).orElse(null);
+    }
     
     public void registerLocation(Location loc){
         
