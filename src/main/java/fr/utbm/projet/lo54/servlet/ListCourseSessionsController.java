@@ -9,6 +9,7 @@ import fr.utbm.projet.lo54.entity.CourseSession;
 import fr.utbm.projet.lo54.entity.Location;
 import fr.utbm.projet.lo54.service.CourseSessionService;
 import fr.utbm.projet.lo54.service.LocationService;
+import static java.lang.Integer.parseInt;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +39,13 @@ public class ListCourseSessionsController {
         model.addAttribute("locations", listLocation);
         
         //long locationID = Long.parseLong(request.getParameter("locationID"));
-        //Location loc = ls.findById(locationID);
+        //int locationID = parseInt(request.getParameter("locationID"));
+        int locationID = 1;
+        Location loc = ls.findById(locationID);
+        String keyword = "trod";
         ArrayList<CourseSession> listCourseSession = css.listAllCourseSession();
         //ArrayList<CourseSession> listCourseSession = css.listLocationCourseSession(loc);
+        //ArrayList<CourseSession> listCourseSession = css.listKeywordCourseSession(keyword);
         model.addAttribute("courseSessions", listCourseSession);
  
         return "search-result";

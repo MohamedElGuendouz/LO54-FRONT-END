@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import fr.utbm.projet.lo54.repository.CourseSessionRep;
 import fr.utbm.projet.lo54.entity.CourseSession;
 import fr.utbm.projet.lo54.entity.Location;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,14 +29,24 @@ public class CourseSessionService {
         return acs;   
     }
     
-    public ArrayList<CourseSession> listMotCourseSession(){
-        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAll();
+    public ArrayList<CourseSession> listKeywordCourseSession(String keyword){
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.search(keyword.toLowerCase());
                 
         return acs;   
     }
     
     public ArrayList<CourseSession> listLocationCourseSession(Location l){
-        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findByLocation(l);
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByLocation(l);
+                
+        return acs;   
+    }
+    
+    //return list of CourseSession where startDate is between the date d - nb days and d + nb days
+    public ArrayList<CourseSession> listAroundDateCourseSession(Date d, int nb){
+        long DateTime = d.getTime();
+        Date dd = new Date(DateTime - (nb * 24 *3600 * 1000));
+        Date df = new Date(DateTime + (nb * 24 *3600 * 1000));
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByStartDateBetween(dd,df);
                 
         return acs;   
     }
