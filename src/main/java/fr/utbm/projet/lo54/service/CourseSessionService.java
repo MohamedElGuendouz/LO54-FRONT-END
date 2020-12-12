@@ -8,33 +8,50 @@ package fr.utbm.projet.lo54.service;
 import java.util.ArrayList;
 
 import fr.utbm.projet.lo54.repository.CourseSessionRep;
-import fr.utbm.projet.lo54.repository.CourseSessionDao;
 import fr.utbm.projet.lo54.entity.CourseSession;
+import fr.utbm.projet.lo54.entity.Location;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 /**
  *
  * @author loann
  */
+@Service
 public class CourseSessionService {
-    /*@Autowired
-    private CourseSessionRep csp;*/
+    @Autowired
+    private CourseSessionRep csp;
     
     public ArrayList<CourseSession> listAllCourseSession(){
-        CourseSessionDao csd = new CourseSessionDao();
-        ArrayList<CourseSession> acs = csd.listAll();
-        
-        /*ArrayList<CourseSession> acs = new ArrayList<>();
-        Iterable<CourseSession> ics = csp.findAll();
-        for (CourseSession cs : ics){
-            acs.add(cs);
-        }*/
-        
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAll();
+                
+        return acs;   
+    }
+    
+    public ArrayList<CourseSession> listKeywordCourseSession(String keyword){
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.search(keyword.toLowerCase());
+                
+        return acs;   
+    }
+    
+    public ArrayList<CourseSession> listLocationCourseSession(Location l){
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByLocation(l);
+                
+        return acs;   
+    }
+    
+    //return list of CourseSession where startDate is between the date d - nb days and d + nb days
+    public ArrayList<CourseSession> listAroundDateCourseSession(Date d, int nb){
+        long DateTime = d.getTime();
+        Date dd = new Date(DateTime - (nb * 24 *3600 * 1000));
+        Date df = new Date(DateTime + (nb * 24 *3600 * 1000));
+        ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByStartDateBetween(dd,df);
+                
         return acs;   
     }
     
     public CourseSession findById(long id) {
-        CourseSessionDao csd = new CourseSessionDao();
-        return csd.getCourseSessionById(id);
+        return csp.findById(id).orElse(null);
     }
 }

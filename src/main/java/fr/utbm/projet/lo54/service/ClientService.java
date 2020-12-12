@@ -5,17 +5,21 @@
  */
 package fr.utbm.projet.lo54.service;
 
-import fr.utbm.projet.lo54.repository.ClientDao;
+import fr.utbm.projet.lo54.repository.ClientRep;
 import fr.utbm.projet.lo54.entity.Client;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 /**
  *
  * @author loann
  */
+@Service
 public class ClientService {
+    @Autowired
+    ClientRep cr;
     
     public void registerClient(Client loc){
-        ClientDao cd = new ClientDao();
-        cd.save(loc);
+        cr.save(loc);
     }
     
 }

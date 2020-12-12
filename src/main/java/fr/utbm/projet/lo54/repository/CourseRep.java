@@ -7,11 +7,13 @@ package fr.utbm.projet.lo54.repository;
 
 import fr.utbm.projet.lo54.entity.Course;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author loann
  */
+@Repository
 public interface CourseRep extends CrudRepository<Course, Long> {
     
 }

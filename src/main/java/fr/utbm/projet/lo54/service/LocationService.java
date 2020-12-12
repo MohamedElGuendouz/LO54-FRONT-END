@@ -5,28 +5,34 @@
  */
 package fr.utbm.projet.lo54.service;
 
-//import fr.utbm.projet.lo54.repository.LocationRep;
-import fr.utbm.projet.lo54.repository.LocationDao;
+import fr.utbm.projet.lo54.repository.LocationRep;
 import fr.utbm.projet.lo54.entity.Location;
 import java.util.ArrayList;
-//import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 /**
  *
  * @author loann
  */
+@Service
 public class LocationService {
-    /*@Autowired
-    private LocationRep locRep;*/
+    @Autowired
+    LocationRep locRep;
+    
+    public Location findById(long id){
+        return locRep.findById(id).orElse(null);
+    }
     
     public void registerLocation(Location loc){
-        LocationDao ld = new LocationDao();
         
-        ld.save(loc);
+        locRep.save(loc);
     }
     
     public ArrayList<Location> listAllLocations(){
-        LocationDao ld = new LocationDao();
+        //LocationDao ld = new LocationDao();
         
-        return ld.listAll();
+        return (ArrayList<Location>) locRep.findAll();
+        //return ld.listAll();
     }
 }
