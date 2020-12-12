@@ -34,20 +34,21 @@
         <div class="overlay">
         </div>
         <div class="container justify-content-center align-items-center align-content-center align-self-center" style="width: 1178px;">
-            <div class="col-xl-9 mx-auto">
+            <div class="col-xl-12 mx-auto">
                 <h1 class="mb-5">Chercher une formation</h1>
             </div>
             <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                 <form>
-                    <div class="form-row">
-                        <div class="col-4 col-md-4 mb-2 mb-md-0"><input type="text" class="form-control" style="height: 100%;" placeholder="Entrer un titre..." /></div>
-                        <div class="col-3 col-md-3"><input class="form-control" type="date" style="height: 100%;" placeholder="Rechercher par date (début +- 2 jours)" /></div>
-                        <div class="col-3 col-md-3"><select class="form-control" style="height: 100%;">
+                    <div class="form-row d-flex justify-content-xl-center">
+                        <div class="col-auto col-md-2 mb-2 mb-md-0"><input type="text" class="form-control" style="height: 95%;font-size: 12px;" placeholder="Entrer un titre..." value="" name="text"/></div>
+                        <div class="col-auto col-md-2"><input class="form-control" type="date" style="height: 95%;font-size: 12px;" value="" placeholder="Rechercher par date (début +- 2 jours)" name="date"/></div>
+                        <div class="col-auto col-md-2"><select class="form-control" style="height: 95%;font-size: 12px;" value="" name="location">
+                            <option value="" selected>Localisation</option>
                             <c:forEach  items="${locations}" var ="location">
-                                <option value="${location.id}">${location.city}</option>
+                                <option value="${location.city}">${location.city}</option>
                             </c:forEach>
                             </select></div>
-                        <div class="col-2 col-md-2"><button class="btn btn-primary btn-block btn-lg" type="submit" style="height: 100%;">Go!</button></div>
+                        <div class="col-auto col-md-1"><button class="btn btn-primary btn-block btn-lg" type="submit" style="height: 95%;font-size: 12px;text-align: center;">Go !</button></div>
                     </div>
                 </form>
             </div>
@@ -58,7 +59,7 @@
         <div class="container">
             <div class="card-group">
                 <c:forEach  items="${courseSessions}" var ="courseSession">
-                    <div class="card"><img class="card-img-top w-100 d-block" />
+                     <div class="card"><img class="card-img-top w-100 d-block" />
                         <div class="card-body">
                             <h4 class="card-title">${courseSession.course.title}</h4>
                             <p class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</p>

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import fr.utbm.projet.lo54.repository.CourseSessionRep;
 import fr.utbm.projet.lo54.entity.CourseSession;
 import fr.utbm.projet.lo54.entity.Location;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ public class CourseSessionService {
     
     public ArrayList<CourseSession> listAllCourseSession(){
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAll();
-                
         return acs;   
     }
     
@@ -35,7 +36,8 @@ public class CourseSessionService {
         return acs;   
     }
     
-    public ArrayList<CourseSession> listLocationCourseSession(Location l){
+    public ArrayList<CourseSession> listLocationCourseSession(String l){
+        System.out.println(l);
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByLocation(l);
                 
         return acs;   
@@ -43,9 +45,20 @@ public class CourseSessionService {
     
     //return list of CourseSession where startDate is between the date d - nb days and d + nb days
     public ArrayList<CourseSession> listAroundDateCourseSession(Date d, int nb){
-        long DateTime = d.getTime();
-        Date dd = new Date(DateTime - (nb * 24 *3600 * 1000));
-        Date df = new Date(DateTime + (nb * 24 *3600 * 1000));
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        
+        System.out.println(""+d);
+        calendar.add(Calendar.DATE, -nb);
+        Date dd = calendar.getTime();
+        
+        calendar.add(Calendar.DATE, +nb*2);
+        Date df = calendar.getTime();
+        
+        System.out.println(""+formatter.format(dd).toString());
+        System.out.println(""+formatter.format(df).toString());
+        
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByStartDateBetween(dd,df);
                 
         return acs;   

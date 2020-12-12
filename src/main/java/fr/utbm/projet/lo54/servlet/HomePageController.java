@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,7 +11,13 @@ import fr.utbm.projet.lo54.service.CourseSessionService;
 import fr.utbm.projet.lo54.service.LocationService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,17 +42,52 @@ public class HomePageController {
     private CourseSessionService css;
  
     @RequestMapping(value = { "/" }, method = RequestMethod.GET)
-    public String viewList(HttpServletRequest request, Model model) {
+    public String viewList(HttpServletRequest request, Model model) throws ParseException {
  
         ArrayList<Location> listLocation = ls.listAllLocations();
         model.addAttribute("locations", listLocation);
         
-        int locationID = 1;
-        Location loc = ls.findById(locationID);
-        String keyword = "trod";
-        ArrayList<CourseSession> listCourseSession = css.listAllCourseSession();
+        ArrayList<CourseSession> listCourseSession = new ArrayList<CourseSession>();
+        boolean isEmpty = true;
+        
+        String text = request.getParameter("text");
+
+        if(text != null && !text.isEmpty()){
+            listCourseSession.addAll(css.listKeywordCourseSession(text));
+            isEmpty = false;
+        }
+        
+        
+        String date = request.getParameter("date");
+        Date date_temp=null;
+        
+        if(date != null && !date.isEmpty()){
+            System.out.println(date);
+            System.out.println(date);
+            System.out.println(date);
+            System.out.println(date);
+            System.out.println(date);
+            
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                    date_temp = (Date) formatter.parse(date);
+                } catch (ParseException ex) {
+            }
+            listCourseSession.addAll(css.listAroundDateCourseSession(date_temp,2));
+            isEmpty = false;
+        }
+        
+        Location location = new Location(request.getParameter("location"));
+
+        if(location.getCity() != null && !location.getCity().isEmpty()){
+            System.out.println(location.getCity());
+            listCourseSession.addAll(css.listLocationCourseSession(location.getCity()));
+            isEmpty = false;
+        } 
+        if(isEmpty) {
+            listCourseSession.addAll(css.listAllCourseSession());
+        }
         model.addAttribute("courseSessions", listCourseSession);
- 
         return "index";
     }
 }
