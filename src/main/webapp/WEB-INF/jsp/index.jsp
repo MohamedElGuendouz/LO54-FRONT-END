@@ -27,7 +27,7 @@
     </head>
     <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
         <div class="container"><a class="navbar-brand" href="/">LO54</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
-            <div class="collapse navbar-collapse" id="navcol-1"><a class="btn btn-primary ml-auto" role="button" href="login.html">Connexion</a></div>
+            
         </div>
     </nav>
     <header class="masthead text-white text-center background-header">
@@ -61,7 +61,7 @@
                 <c:forEach  items="${courseSessions}" var ="courseSession">
                      <div class="card"><img class="card-img-top w-100 d-block" />
                         <div class="card-body">
-                            <h4 class="card-title">${courseSession.course.title}</h4>
+                            <h4 class="card-title">${courseSession.course.code} : ${courseSession.course.title}</h4>
                             <p class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</p>
                             <button class="btn btn-primary" type="link" role="link" href="/courseDetails?id=${courseSession.id}">
                                 <a class="btn btn-primary" role="button" href="/course?id=${courseSession.id}">Détails</a>

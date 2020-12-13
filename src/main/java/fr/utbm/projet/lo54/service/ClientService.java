@@ -19,6 +19,7 @@ public class ClientService {
     ClientRep cr;
     
     public void registerClient(Client loc){
+        System.out.println("registerClient");
         cr.save(loc);
     }
     

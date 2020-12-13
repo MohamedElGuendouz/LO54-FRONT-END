@@ -21,7 +21,7 @@
     <body>
         <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
             <div class="container"><a class="navbar-brand" href="/">LO54</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
-                <div class="collapse navbar-collapse" id="navcol-1"><a class="btn btn-primary ml-auto" role="button" href="login.html">Connexion</a></div>
+
             </div>
         </nav>
         <section class="bloc-course-detail">
@@ -38,42 +38,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <form method="post">
-                            <h2 class="text-center">S&#39;inscrire au cours</h2>
-                            <div class="form-group"><input type="text" class="form-control" placeholder="Prénom" name="name" /></div>
-                            <div class="form-group"><input type="text" class="form-control" placeholder="Nom" name="name" /></div>
-                            <div class="form-group"><input type="email" class="form-control" name="email" placeholder="Email" /></div>
-                            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">S&#39;inscrire</button></div>
-                        </form>
-                    </div>
+                    <div class="col-lg-6">
+    <form method="post" style="width: 100%;">
+        <h2 class="text-center">S&#39;inscrire au cours</h2>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group"><input type="text" class="form-control" placeholder="Nom" name="lastname" /></div>
+                <div class="form-group"><input type="text" class="form-control" placeholder="Prénom" name="firstname" /></div>
+                <div class="form-group"><input type="email" class="form-control" name="email" placeholder="Email" /></div>
+            </div>
+            <div class="col">
+                <div class="form-group"><input type="text" class="form-control" placeholder="Adresse" name="address" /></div>
+                <div class="form-group"><input type="tel" class="form-control" name="phone" placeholder="Mobile" /></div>
+                <div class="form-group"><p name="id-session" placeholder="Mobile" />Cours Session n°${courseSession.id}</div>
+            </div>
+        </div>
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">S&#39;inscrire</button></div>
+    </form>
+                </div>
                 </div>
             </div>
             <div class="form-container"></div>
         </section>
-        <hr>
         
-        <section>
-            <div class="container">
-                <div class="row">
-                    <br>
-                        <h3 class="card-title">Commentaires</h3>
-                    <br>
-                </div>
-                <div class="row">
-                    <div class="col" style="margin-top: 50px; margin-bottom: 50px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Utilisateur</h5>
-                                <h6 class="text-muted card-subtitle mb-2">date</h6>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <hr>
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
