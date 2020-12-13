@@ -26,7 +26,7 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Vous tentez d'accéder à une ressource inconnue</h4>
+                <h4 class="card-title">Cette ressource n'existe pas ou une erreur a été rencontrée</h4>
 				<a href="/courseSessions">Retour au menu principal</a>
             </div>
         </div>

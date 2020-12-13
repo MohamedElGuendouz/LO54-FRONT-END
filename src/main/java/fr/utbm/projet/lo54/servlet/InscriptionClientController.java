@@ -37,6 +37,8 @@ public class InscriptionClientController {
         
         Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), courseS);
         cs.registerClient(ct);
+        
+        model.addAttribute("client", ct);
  
         return "successfulRegis";
     }

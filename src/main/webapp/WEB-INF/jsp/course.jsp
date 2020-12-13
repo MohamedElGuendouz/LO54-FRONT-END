@@ -34,15 +34,19 @@
                                 <h5 class="text-muted card-subtitle mb-2">${courseSession.location.city}</h5>
                                 <h6>${courseSession.maxParticipant} participants max.</h6>
                                 <h6 class="text-muted card-subtitle mb-2">${courseSession.startDate} - ${courseSession.endDate}</h6>
+								<p class="card-text">${numberRegistered} inscrits sur ${courseSession.maxParticipant} places totales</p>
                                 <p class="card-text"><br />Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.<br /></p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <form method="post">
+                        <form action="/inscriptionClient" method="post">
                             <h2 class="text-center">S&#39;inscrire au cours</h2>
-                            <div class="form-group"><input type="text" class="form-control" placeholder="Prénom" name="name" /></div>
-                            <div class="form-group"><input type="text" class="form-control" placeholder="Nom" name="name" /></div>
+							<input hidden type="text" value="${courseSession.id}" name="courseSession" />
+                            <div class="form-group"><input type="text" class="form-control" placeholder="Prénom" name="firstname" /></div>
+                            <div class="form-group"><input type="text" class="form-control" placeholder="Nom" name="lastname" /></div>
+							<div class="form-group"><input type="text" class="form-control" placeholder="Adresse" name="address" /></div>
+							<div class="form-group"><input type="text" class="form-control" placeholder="Numéro de téléphone" name="phone" /></div>
                             <div class="form-group"><input type="email" class="form-control" name="email" placeholder="Email" /></div>
                             <div class="form-group"><button class="btn btn-primary btn-block" type="submit">S&#39;inscrire</button></div>
                         </form>
