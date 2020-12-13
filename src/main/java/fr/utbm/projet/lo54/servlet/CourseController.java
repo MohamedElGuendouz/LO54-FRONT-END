@@ -6,6 +6,7 @@
 package fr.utbm.projet.lo54.servlet;
 
 import fr.utbm.projet.lo54.entity.CourseSession;
+import fr.utbm.projet.lo54.service.ClientService;
 import fr.utbm.projet.lo54.service.CourseSessionService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +30,9 @@ public class CourseController {
     @Autowired
     private CourseSessionService css;
     
+    @Autowired
+    private ClientService cs;
+    
     @RequestMapping(value = { "/course" }, method = RequestMethod.GET)
     public String viewDetailCourse(HttpServletRequest request , Model model) {
  
@@ -38,6 +42,7 @@ public class CourseController {
             return "error";
         } else {
             model.addAttribute("courseSession", courseSession);
+            model.addAttribute("numberRegistered", cs.numberOfRegistered(courseSession));
 
             return "course";
         }

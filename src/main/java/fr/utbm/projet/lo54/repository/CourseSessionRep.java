@@ -32,11 +32,8 @@ public interface CourseSessionRep extends JpaRepository<CourseSession, Long> {
     
     List<CourseSession> findAllByLocation(Location l);
     
-    //@Query(value="select cs from COURSE_SESSION cs where startDate = :dd")
-    //List<CourseSession> findAroundStartDate(@Param("dd") Date dd);
     List<CourseSession> findAllByStartDateBetween(Date dateDebut, Date DateFin);
     
-    //@Query(value="select cs from CourseSession cs", nativeQuery = false)
     @Query("select c from CourseSession c INNER JOIN c.course o WHERE LOWER(o.code) LIKE %?1% OR LOWER(o.title) LIKE %?1%")
     public List<CourseSession> search(String keyword);
 }

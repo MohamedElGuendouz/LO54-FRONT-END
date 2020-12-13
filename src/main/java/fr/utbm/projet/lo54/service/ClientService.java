@@ -7,6 +7,7 @@ package fr.utbm.projet.lo54.service;
 
 import fr.utbm.projet.lo54.repository.ClientRep;
 import fr.utbm.projet.lo54.entity.Client;
+import fr.utbm.projet.lo54.entity.CourseSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -22,4 +23,7 @@ public class ClientService {
         cr.save(loc);
     }
     
+    public int numberOfRegistered(CourseSession cs){
+        return cr.countRegistrations(cs);
+    }
 }

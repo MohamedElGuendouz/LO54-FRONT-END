@@ -29,7 +29,8 @@
                 <h4 class="card-title">${courseSession.course.title}</h4>
                 <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
                 <p class="card-text">Nu
-						<p class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</p>
+		<p class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</p>
+                <p class="card-text">${numberRegistered} inscrits sur ${courseSession.maxParticipant} places totales</p>
                 <div class="row">
                     <div class="col-2">
                         <div class="row">

@@ -6,6 +6,7 @@
 package fr.utbm.projet.lo54.servlet;
 
 import fr.utbm.projet.lo54.entity.CourseSession;
+import fr.utbm.projet.lo54.service.ClientService;
 import fr.utbm.projet.lo54.service.CourseSessionService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class CourseDetailsController {
     @Autowired
     private CourseSessionService css;
     
+    @Autowired
+    private ClientService cs;
+    
     @RequestMapping(value = { "/courseDetails" }, method = RequestMethod.GET)
     //public String viewPersonList(@RequestParam long id, Model model) {
     public String viewPersonList(HttpServletRequest request , Model model) {
@@ -33,6 +37,7 @@ public class CourseDetailsController {
             return "error";
         } else {
             model.addAttribute("courseSession", courseSession);
+            model.addAttribute("numberRegistered", cs.numberOfRegistered(courseSession));
 
             return "course-details";
         }
