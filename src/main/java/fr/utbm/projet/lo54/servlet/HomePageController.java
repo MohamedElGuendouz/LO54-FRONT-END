@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -77,17 +78,19 @@ public class HomePageController {
             isEmpty = false;
         }
         
-        Location location = new Location(request.getParameter("location"));
+        Location location = ls.findByCity(request.getParameter("location"));
 
-        if(location.getCity() != null && !location.getCity().isEmpty()){
+        if(location != null){
             System.out.println(location.getCity());
-            listCourseSession.addAll(css.listLocationCourseSession(location.getCity()));
+            listCourseSession.addAll(css.listLocationCourseSession(location));
             isEmpty = false;
         } 
         if(isEmpty) {
             listCourseSession.addAll(css.listAllCourseSession());
         }
-        model.addAttribute("courseSessions", listCourseSession);
+        model.addAttribute("courseSessions", listCourseSession.stream().distinct().collect(Collectors.toList()));
+        
+        
         return "index";
     }
 }

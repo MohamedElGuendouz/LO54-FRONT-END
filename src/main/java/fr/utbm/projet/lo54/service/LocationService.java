@@ -24,6 +24,10 @@ public class LocationService {
         return locRep.findById(id).orElse(null);
     }
     
+    public Location findByCity(String city){
+        return locRep.findByCity(city).orElse(null);
+    }
+    
     public void registerLocation(Location loc){
         
         locRep.save(loc);

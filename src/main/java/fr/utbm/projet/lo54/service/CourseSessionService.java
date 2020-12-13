@@ -36,7 +36,7 @@ public class CourseSessionService {
         return acs;   
     }
     
-    public ArrayList<CourseSession> listLocationCourseSession(String l){
+    public ArrayList<CourseSession> listLocationCourseSession(Location l){
         System.out.println(l);
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByLocation(l);
                 

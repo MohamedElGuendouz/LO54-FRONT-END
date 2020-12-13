@@ -6,6 +6,7 @@
 package fr.utbm.projet.lo54.repository;
 
 import fr.utbm.projet.lo54.entity.Client;
+import fr.utbm.projet.lo54.entity.CourseSession;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
@@ -20,7 +21,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRep extends CrudRepository<Client, Long> {
 
-    /**@Query("SELECT MAX(c.id) FROM Client c")
+    /**
+     * 
+     * Merci Spring Data
+     * 
+     * @Query("SELECT MAX(c.id) FROM Client c")
     Integer findMaxId();
     
     @Modifying
@@ -32,4 +37,8 @@ public interface ClientRep extends CrudRepository<Client, Long> {
       @Param("email") String email, @Param("firstname") String firstname,
       @Param("lastname") String lastname, @Param("phone") String phone, @Param("session") Integer session);
     */
+    
+    
+    @Query("select count(c) FROM Client c INNER JOIN c.session cs WHERE cs = ?1")
+    public int countRegistrations(CourseSession cs);
 }

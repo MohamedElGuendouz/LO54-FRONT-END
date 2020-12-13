@@ -40,10 +40,10 @@
             <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                 <form>
                     <div class="form-row d-flex justify-content-xl-center">
-                        <div class="col-auto col-md-2 mb-2 mb-md-0"><input type="text" class="form-control" style="height: 95%;font-size: 12px;" placeholder="Entrer un titre..." value="" name="text"/></div>
+                        <div class="col-auto col-md-2 mb-2 mb-md-0"><input type="text" class="form-control" style="height: 95%;font-size: 12px;" placeholder="Entrer un mot-clé..." value="" name="text"/></div>
                         <div class="col-auto col-md-2"><input class="form-control" type="date" style="height: 95%;font-size: 12px;" value="" placeholder="Rechercher par date (début +- 2 jours)" name="date"/></div>
                         <div class="col-auto col-md-2"><select class="form-control" style="height: 95%;font-size: 12px;" value="" name="location">
-                            <option value="" selected>Localisation</option>
+                            <option value="" selected>Toutes</option>
                             <c:forEach  items="${locations}" var ="location">
                                 <option value="${location.city}">${location.city}</option>
                             </c:forEach>
@@ -57,20 +57,23 @@
     <main>
         <hr/>
         <div class="container">
-            <div class="card-group">
-                <c:forEach  items="${courseSessions}" var ="courseSession">
-                     <div class="card"><img class="card-img-top w-100 d-block" />
-                        <div class="card-body">
-                            <h4 class="card-title">${courseSession.course.code} : ${courseSession.course.title}</h4>
-                            <p class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</p>
-                            <button class="btn btn-primary" type="link" role="link" href="/courseDetails?id=${courseSession.id}">
-                                <a class="btn btn-primary" role="button" href="/course?id=${courseSession.id}">Détails</a>
-                            </button>
-                        </div>
+            <%int i = 0;%>
+            <c:forEach  items="${courseSessions}" var ="courseSession">
+            <%i++;
+            if(i%2 == 1) out.println("<div class=\"card-group\">");
+            %>
+                <div class="card">
+                    <img class="card-img-top w-100 d-block" />
+                    <div class="card-body">
+                        <h4 class="card-title">${courseSession.course.code} : ${courseSession.course.title}</h4>
+                        <h6 class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</h6>
+                        <button class="btn btn-primary" type="link" role="link" href="/courseDetails?id=${courseSession.id}">
+                            <a class="btn btn-primary" role="button" href="/course?id=${courseSession.id}">Détails</a>
+                        </button>
                     </div>
-                    <option value="${location.id}">${location.city}</option>
-                </c:forEach>
-            </div>
+                </div>
+            <% if(i%2==0) out.println("</div>");%>
+            </c:forEach>
         </div>
     </main>
     <hr/>

@@ -29,6 +29,8 @@ import fr.utbm.projet.lo54.service.ClientService;
 public class CourseController {
     @Autowired
     private CourseSessionService css;
+    
+    @Autowired
     private ClientService cs;
     
     @RequestMapping(value = { "/course" }, method = RequestMethod.GET)
@@ -40,14 +42,12 @@ public class CourseController {
             Long id = Long.parseLong(s_id);
             CourseSession courseSession = css.findById(id);
             model.addAttribute("courseSession", courseSession);
+            model.addAttribute("numberRegistered", cs.numberOfRegistered(courseSession));
         }
-        
-        
- 
-        
         return "course";
     }
     
+    /**
     @RequestMapping(value = { "/course" }, method = RequestMethod.POST)
     public String inscription(HttpServletRequest request , Model model) {
  
@@ -83,8 +83,6 @@ public class CourseController {
         }
         
         
- 
-        
         return "course";
-    }
+    }*/
 }
