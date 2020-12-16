@@ -37,9 +37,8 @@ public class CourseSessionService {
     }
     
     public ArrayList<CourseSession> listLocationCourseSession(Location l){
-        System.out.println(l);
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByLocation(l);
-                
+        
         return acs;   
     }
     
@@ -67,4 +66,5 @@ public class CourseSessionService {
     public CourseSession findById(long id) {
         return csp.findById(id).orElse(null);
     }
+    
 }

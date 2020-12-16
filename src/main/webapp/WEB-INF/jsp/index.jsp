@@ -25,11 +25,7 @@
             }
         </style>
     </head>
-    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
-        <div class="container"><a class="navbar-brand" href="/">LO54</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
-            
-        </div>
-    </nav>
+    <jsp:include page="header.jsp" />
     <header class="masthead text-white text-center background-header">
         <div class="overlay">
         </div>
@@ -42,6 +38,7 @@
                     <div class="form-row d-flex justify-content-xl-center">
                         <div class="col-auto col-md-2 mb-2 mb-md-0"><input type="text" class="form-control" style="height: 95%;font-size: 12px;" placeholder="Entrer un mot-clé..." value="" name="text"/></div>
                         <div class="col-auto col-md-2"><input class="form-control" type="date" style="height: 95%;font-size: 12px;" value="" placeholder="Rechercher par date (début +- 2 jours)" name="date"/></div>
+                        <div class="col-auto col-md-1 mb-1 mb-md-0"><input type="text" class="form-control" style="height: 95%;font-size: 12px;" placeholder="+/- jours" value="" name="jours"/></div>
                         <div class="col-auto col-md-2"><select class="form-control" style="height: 95%;font-size: 12px;" value="" name="location">
                             <option value="" selected>Toutes</option>
                             <c:forEach  items="${locations}" var ="location">
@@ -66,7 +63,12 @@
                     <img class="card-img-top w-100 d-block" />
                     <div class="card-body">
                         <h4 class="card-title">${courseSession.course.code} : ${courseSession.course.title}</h4>
+                        <hr>
                         <h6 class="card-text">du ${courseSession.startDate} au ${courseSession.endDate}</h6>
+                        <hr>
+                        <h6>${courseSession.maxParticipant} places totales</h6>
+                        <hr>
+                        <h5 class="text-muted card-subtitle mb-2">${courseSession.location.city}</h5>
                         <button class="btn btn-primary" type="link" role="link" href="/courseDetails?id=${courseSession.id}">
                             <a class="btn btn-primary" role="button" href="/course?id=${courseSession.id}">Détails</a>
                         </button>
@@ -77,29 +79,6 @@
         </div>
     </main>
     <hr/>
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 my-auto h-100 text-center text-lg-left">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="#">About</a></li>
-                        <li class="list-inline-item"><span>⋅</span></li>
-                        <li class="list-inline-item"><a href="#">Contact</a></li>
-                        <li class="list-inline-item"><span>⋅</span></li>
-                        <li class="list-inline-item"><a href="#">Terms of  Use</a></li>
-                        <li class="list-inline-item"><span>⋅</span></li>
-                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 my-auto h-100 text-center text-lg-right">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <jsp:include page="footer.jsp" />
     </body>
 </html>

@@ -1,7 +1,7 @@
-Sun Dec 13 14:53:45 CET 2020 : Apache Derby Network Server - 10.14.2.0 - (1828579) démarré et prêt à accepter les connexions sur le port 1527
+Wed Dec 16 14:13:57 CET 2020 : Apache Derby Network Server - 10.14.2.0 - (1828579) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Sun Dec 13 14:53:45 CET 2020:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579) : instance a816c00e-0176-5c60-ed46-ffffc9ad7166 
+Wed Dec 16 14:13:57 CET 2020:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579) : instance a816c00e-0176-6baf-94af-ffffc9ad7166 
 dans le répertoire de base de données C:\Users\moham\OneDrive\Documents\GitHub\LO54-FRONT-END\data\derby\lo54Project avec le chargeur de classe jdk.internal.loader.ClassLoaders$AppClassLoader@2cdf8d8a
 Chargé de file:/C:/Users/moham/OneDrive/Documents/Scolaire/LO54-2/TP/LO54/App/jdk/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,9 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\moham\OneDrive\Documents\GitHub\LO54-FRONT-END\data\derby
 Chargeur de classe de la base de données démarré - derby.database.classpath = ''
-----------------------------------------------------------------
-Sun Dec 13 16:26:05 CET 2020 : fermeture du moteur Derby
-----------------------------------------------------------------
-Sun Dec 13 16:26:05 CET 2020:
-Fermeture de l'instance a816c00e-0176-5c60-ed46-ffffc9ad7166 sur le répertoire de base de données C:\Users\moham\OneDrive\Documents\GitHub\LO54-FRONT-END\data\derby\lo54Project avec le chargeur de classe jdk.internal.loader.ClassLoaders$AppClassLoader@2cdf8d8a 
-----------------------------------------------------------------

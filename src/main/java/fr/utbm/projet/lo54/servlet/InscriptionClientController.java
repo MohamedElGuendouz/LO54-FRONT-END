@@ -32,13 +32,17 @@ public class InscriptionClientController {
     
     @RequestMapping(value = { "/inscriptionClient" }, method = RequestMethod.POST)
     public String viewPersonList(HttpServletRequest request, Model model) {
+        
         long valueCs = Long.parseLong(request.getParameter("courseSession"));
+        
         CourseSession courseS = css.findById(valueCs);
-        
-        Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), courseS);
-        cs.registerClient(ct);
-        
-        model.addAttribute("client", ct);
+                
+        if(cs.numberOfRegistered(courseS) < courseS.getMaxParticipant()) {
+            System.out.println("Max atteint");
+            Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), courseS);
+            cs.registerClient(ct);
+            model.addAttribute("client", ct);
+        }
         return "successfulRegis";
     }
 }

@@ -20,24 +20,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClientRep extends CrudRepository<Client, Long> {
-
-    /**
-     * 
-     * Merci Spring Data
-     * 
-     * @Query("SELECT MAX(c.id) FROM Client c")
-    Integer findMaxId();
-    
-    @Modifying
-    @Query(
-      value = 
-        "insert into Users (id, address, email, firstname, lastname, phone, session) values (:id, :address, :email, :firstname, :lastname, :phone, :session)",
-      nativeQuery = true)
-    void insertUser(@Param("id") Integer id, @Param("address") String adresse, 
-      @Param("email") String email, @Param("firstname") String firstname,
-      @Param("lastname") String lastname, @Param("phone") String phone, @Param("session") Integer session);
-    */
-    
     
     @Query("select count(c) FROM Client c INNER JOIN c.session cs WHERE cs = ?1")
     public int countRegistrations(CourseSession cs);

@@ -9,21 +9,16 @@ import fr.utbm.projet.lo54.entity.CourseSession;
 import fr.utbm.projet.lo54.entity.Location;
 import fr.utbm.projet.lo54.service.CourseSessionService;
 import fr.utbm.projet.lo54.service.LocationService;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +43,9 @@ public class HomePageController {
         ArrayList<Location> listLocation = ls.listAllLocations();
         model.addAttribute("locations", listLocation);
         
-        ArrayList<CourseSession> listCourseSession = new ArrayList<CourseSession>();
-        boolean isEmpty = true;
+       ArrayList<CourseSession> listCourseSession = new ArrayList<CourseSession>();
+        
+       boolean isEmpty = true;
         
         String text = request.getParameter("text");
 
@@ -57,7 +53,6 @@ public class HomePageController {
             listCourseSession.addAll(css.listKeywordCourseSession(text));
             isEmpty = false;
         }
-        
         
         String date = request.getParameter("date");
         Date date_temp=null;
@@ -74,7 +69,8 @@ public class HomePageController {
                     date_temp = (Date) formatter.parse(date);
                 } catch (ParseException ex) {
             }
-            listCourseSession.addAll(css.listAroundDateCourseSession(date_temp,2));
+            Integer nbJours = Integer.parseInt(request.getParameter("jours"));
+            listCourseSession.addAll(css.listAroundDateCourseSession(date_temp,nbJours));
             isEmpty = false;
         }
         
@@ -87,10 +83,11 @@ public class HomePageController {
         } 
         if(isEmpty) {
             listCourseSession.addAll(css.listAllCourseSession());
+            model.addAttribute("courseSessions", listCourseSession.stream().distinct().collect(Collectors.toList()));
         }
+              
         model.addAttribute("courseSessions", listCourseSession.stream().distinct().collect(Collectors.toList()));
-        
-        
+
         return "index";
     }
 }
