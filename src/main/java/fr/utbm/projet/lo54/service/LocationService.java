@@ -34,9 +34,6 @@ public class LocationService {
     }
     
     public ArrayList<Location> listAllLocations(){
-        //LocationDao ld = new LocationDao();
-        
         return (ArrayList<Location>) locRep.findAll();
-        //return ld.listAll();
     }
 }

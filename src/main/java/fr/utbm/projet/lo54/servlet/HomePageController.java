@@ -14,9 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +56,6 @@ public class HomePageController {
         Date date_temp=null;
         
         if(date != null && !date.isEmpty()){
-            System.out.println(date);
-            System.out.println(date);
-            System.out.println(date);
-            System.out.println(date);
-            System.out.println(date);
             
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             try {
@@ -77,7 +70,7 @@ public class HomePageController {
         Location location = ls.findByCity(request.getParameter("location"));
 
         if(location != null){
-            System.out.println(location.getCity());
+            
             listCourseSession.addAll(css.listLocationCourseSession(location));
             isEmpty = false;
         } 

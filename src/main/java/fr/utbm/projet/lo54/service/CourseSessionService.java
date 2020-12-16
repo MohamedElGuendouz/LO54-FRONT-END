@@ -48,15 +48,11 @@ public class CourseSessionService {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(d);
         
-        System.out.println(""+d);
         calendar.add(Calendar.DATE, -nb);
         Date dd = calendar.getTime();
         
         calendar.add(Calendar.DATE, +nb*2);
         Date df = calendar.getTime();
-        
-        System.out.println(""+formatter.format(dd).toString());
-        System.out.println(""+formatter.format(df).toString());
         
         ArrayList<CourseSession> acs = (ArrayList<CourseSession>) csp.findAllByStartDateBetween(dd,df);
                 

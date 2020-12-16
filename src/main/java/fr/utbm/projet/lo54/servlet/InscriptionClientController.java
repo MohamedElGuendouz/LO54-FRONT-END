@@ -38,7 +38,6 @@ public class InscriptionClientController {
         CourseSession courseS = css.findById(valueCs);
                 
         if(cs.numberOfRegistered(courseS) < courseS.getMaxParticipant()) {
-            System.out.println("Max atteint");
             Client ct = new Client(request.getParameter("lastname"), request.getParameter("firstname"),request.getParameter("address"),request.getParameter("phone"),request.getParameter("email"), courseS);
             cs.registerClient(ct);
             model.addAttribute("client", ct);
